@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block title %}<title>main</title>{% endblock %}
+  <link href="{% static 'styles/main.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <!---------------- flash messages ------------------->
+      {% if messages %}
+      <ul class="messages">
+      {% for message in messages %}
+    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+    {% endfor %}
+      </ul>
+     
+      {% endif %}
+    <!------------------- end of flash messages ------------->
+
+    <!--------------------- Container -------------------->
+    <div class="container">
+       <!--------------------- navigation -------------------->
+         <nav>
+        {% block navbar %}
+           
+        {% endblock %}
+      </nav>
+      <!--------------------- end of navigation -------------------->
+
+       <!--------------------- Contents -------------------->
+       <div class="contents">
+    {% block content %}
+      
+     
+        
+     
+    {% endblock %}
+      </div>
+        <!--------------------- end of Contents -------------------->
+      
+    </div>
+     <!--------------------- end of Container -------------------->
+  </body>
+</html>
