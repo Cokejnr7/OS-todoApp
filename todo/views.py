@@ -1,25 +1,32 @@
 from django.shortcuts import render, redirect
 from .models import Task
 from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import RegisterForm, TaskForm
 
 
 # Create your views here.
+@login_required()
 def home(request):
-    tasks = Task.objects.all()
-    context = {'tasks': tasks}
-    return render(request, 'main.html', context)
 
-
-def createTask(request):
     tasks = Task.objects.all()
-    context = {'tasks': tasks}
+    incomplete = Task.objects.filter(complete=False)
+    context = {'tasks': tasks, 'incomplete': incomplete}
+
     return render(request, 'todo/home.html', context)
 
 
+def createTask(request):
+    form = TaskForm()
+    context = {'form': form}
+    return render(request, 'todo/create-task.html', context)
+
+
 def loginUser(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         username = request.POST['username'].lower()
         password = request.POST['password']
@@ -42,7 +49,7 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    messages.success(request, 'Succesfully logged out')
+    messages.success(request, 'logged out succesfully')
     return redirect('login')
 
 

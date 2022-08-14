@@ -1,5 +1,13 @@
 {% extends 'main.html' %}
 
+{% block navbar %}
+<div>
+       <h1>Hello {{request.user}}</h1>
+<p>you have {{incomplete|length}} incomplete 
+  task{{incomplete|pluralize:"s"}}</p>
+  </div>
+  <a href="{% url 'logout' %}">logout</a>
+{% endblock %}
 
 {% block content %}
 <p>test</p>

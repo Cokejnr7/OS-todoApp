@@ -7,7 +7,7 @@
 }
 :root{
   --bg-color: #0E1525;
-  --info: #0053A6;
+  --messages-info: #0053A6;
   --completed: #044A10;
   --search-bar: #2B3245;/* also border color */
   --card-color: #1C2333;
@@ -197,36 +197,4 @@ form .btn input[type="submit"]{
 
 .register-field{
   margin-bottom: 50px;
-}
-
-
-.success{
-  padding: 1.5rem;
-  background-color: var(--completed);
-  color: var(--white);
-  font-size: 1rem;
-  border-radius: .5rem;
-}
-
-.error{
-  padding: 1.5rem;
-  background-color: var(--pink);
-  color: var(--white);
-  font-size: 1rem;
-  border-radius: .5rem;
-}
-
-.info{
-  padding: 1.5rem;
-  background-color: var(--info);
-  color: var(--white);
-  font-size: 1rem;
-  border-radius: .5rem;
-}
-
-li{
-  list-style-type: none;
-}
-.fa{
-  cursor: pointer;
 }
