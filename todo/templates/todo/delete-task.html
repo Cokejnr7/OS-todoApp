@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<form method="POST" action="" class="delete-container">
+  {% csrf_token %}
+      <div class="delete-nav"><a href="{% url 'home' %}">&#8592;</a></div>
+      <div class="delete-contents">
+        <p>Are you sure you want to delete this task?<br> "{{task.title|slice:20}}"</p>
+        <input type="submit" value="Delete" class="delete-btn" />
+      </div>
+</form>
+
+{% endblock %}

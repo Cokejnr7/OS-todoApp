@@ -199,29 +199,32 @@ form .btn input[type="submit"]{
   margin-bottom: 50px;
 }
 
-
-.success{
-  padding: 1.5rem;
-  background-color: var(--completed);
-  color: var(--white);
-  font-size: 1rem;
-  border-radius: .5rem;
+.cancel-message{
+  cursor: pointer;
+}
+.cancel-message:hover{
+  color: var(--pink);
 }
 
-.error{
-  padding: 1.5rem;
-  background-color: var(--pink);
-  color: var(--white);
+.success,.error,.info{
+  padding: 1rem;
   font-size: 1rem;
   border-radius: .5rem;
+  margin-bottom: 5px;
+}
+
+.success{
+   background-color: var(--completed);
+  color: var(--white);
+}
+.error{
+  background-color: var(--pink);
+  color: var(--white);
 }
 
 .info{
-  padding: 1.5rem;
   background-color: var(--info);
   color: var(--white);
-  font-size: 1rem;
-  border-radius: .5rem;
 }
 
 li{

@@ -10,18 +10,68 @@ from .forms import RegisterForm, TaskForm
 # Create your views here.
 @login_required()
 def home(request):
-
-    tasks = Task.objects.all()
+    user = request.user
+    tasks = Task.objects.filter(user=user)
     incomplete = Task.objects.filter(complete=False)
     context = {'tasks': tasks, 'incomplete': incomplete}
 
     return render(request, 'todo/home.html', context)
 
 
+@login_required()
 def createTask(request):
+    user = request.user
     form = TaskForm()
     context = {'form': form}
+    if request.method == "POST":
+        form = TaskForm(request.POST, request.FILES)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = user
+            task.save()
+            messages.success(request, "new task created")
+            return redirect('home')
+        messages.error(request, "unable to create task something went wrong")
     return render(request, 'todo/create-task.html', context)
+
+
+@login_required()
+def taskDetail(request, pk):
+    task = Task.objects.get(id=pk)
+    context = {'task': task}
+    return render(request, 'todo/task-detail.html', context)
+
+
+@login_required()
+def updateTask(request, pk):
+    name = "update"
+    user = request.user
+    task = Task.objects.get(id=pk)
+    form = TaskForm(instance=task)
+    context = {'form': form, 'name': name}
+    if request.method == "POST":
+        form = TaskForm(request.POST, request.FILES, instance=task)
+        if form.is_valid():
+            task = form.save(commit=False)
+            task.user = user
+            task.save()
+            messages.success(request, f"task {task.title[0:20]} updated")
+            return redirect('home')
+        else:
+            messages.error(request,
+                           "unable to update task something went wrong")
+    return render(request, 'todo/create-task.html', context)
+
+
+@login_required()
+def deleteTask(request, pk):
+    user = request.user
+    task = Task.objects.get(id=pk, user=user)
+    context = {'task': task}
+    if request.method == "POST":
+        task.delete()
+        return redirect('home')
+    return render(request, 'todo/delete-task.html', context)
 
 
 def loginUser(request):

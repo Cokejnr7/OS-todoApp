@@ -9,11 +9,11 @@ class Task(models.Model):
                              on_delete=models.CASCADE,
                              blank=True,
                              null=True)
-    title = models.CharField(max_length=256)
+    title = models.CharField(max_length=30)
     description = models.TextField(blank=True, null=True)
     complete = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(null=True, blank=True)
+    image = models.ImageField(null=True, blank=True, default="default.jpg")
     id = models.UUIDField(default=uuid.uuid4,
                           editable=False,
                           unique=True,

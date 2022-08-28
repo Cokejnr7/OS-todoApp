@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     {% block title %}<title>main</title>{% endblock %}
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="{% static 'styles/main.css' %}" rel="stylesheet">
   </head>
@@ -15,36 +16,17 @@
       {% if messages %}
       <ul class="messages">
       {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }} <i style="font-size:16px" class="fa cancel-message">&#xf00d;</i></li> 
+    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }} <i style="font-size:16px" class="fa cancel-message">&#xf00d;</i></li> 
     {% endfor %}
       </ul>
-     
-      {% endif %}
-    <!------------------- end of flash messages ------------->
-
-    <!--------------------- Container -------------------->
-    <div class="container">
-       <!--------------------- navigation -------------------->
-     <nav>
-        {% block navbar %}
-           
-        {% endblock %}
-      </nav>
-      <!--------------------- end of navigation --------------->
-     
-       <!--------------------- Contents -------------------->
-       <div class="contents">
+    {% endif %}
+    
     {% block content %}
       
      
         
      
     {% endblock %}
-      </div>
-        <!--------------------- end of Contents -------------------->
-      
-    </div>
-     <!--------------------- end of Container -------------------->
     <script src="{% static 'js/index.js' %}"></script>
   </body>
 </html>

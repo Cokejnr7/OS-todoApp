@@ -1,14 +1,55 @@
 {% extends 'main.html' %}
 
-{% block navbar %}
-<div>
-       <h1>Hello {{request.user}}</h1>
-<p>you have {{incomplete|length}} incomplete 
-  task{{incomplete|pluralize:"s"}}</p>
-  </div>
-  <a href="{% url 'logout' %}">logout</a>
-{% endblock %}
+{% block content %} 
+ <div class="container">
+      <div class="nav">
+        <div class="logout">
+          <a href="{% url 'logout' %}">logout</a>
+        </div>
+        <div class="user">
+          <h1>Hello {{request.user|capfirst}}</h1>
+          {% if tasks %}
+          {% if incomplete %}
+          <p>You have {{incomplete|length}} incomplete task{{incomplete|pluralize:"s"}}</p>
+          {% else %}
+          <p>All tasks completed</p>
+          {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <ul class="search-add">
+        <li>
+          <input type="text" name="search" class="search-bar" /><input
+            type="submit"
+            value="Search"
+            class="search-btn"
+          />
+        </li>
+        <li class="add-task"><a href="{% url 'create-task' %}">+</a></li>
+      </ul>
+      <ul class="contents">
+        {% for task in tasks %}
 
-{% block content %}
-<p>test</p>
+        {% if task.complete == True %}
+
+           <li class="task-container">
+          <span class="task-span"
+            ><p class="status checked"></p>
+            <p class="task"><a href="{% url 'update-task' task.id %}"><s>{{task.title}} </s></a></p></span
+          >
+          <span class="delete-task"><a href="{% url 'delete-task' task.id %}" class="delete-task">&#9746; </a></span>
+        </li>
+
+        {% else %}
+        <li class="task-container">
+          <span class="task-span"
+            ><p class="status"></p>
+            <p class="task"><a href="{% url 'update-task' task.id %}">{{task.title}} </a></p></span
+          >
+          <span ><a href="{% url 'delete-task' task.id %}" class="delete-task">&#9746; </a></span>
+        </li>
+       {% endif %}
+        {% endfor %}
+      </ul>
+    </div>
 {% endblock %}
