@@ -265,3 +265,82 @@ a{
 p.checked{
   background-color: var(--completed) !important;
 }
+
+
+
+/* form */
+.task-form{
+    display: flex;
+    flex-direction: column;
+   justify-content: space-around;
+   padding: 0px 10px;
+}
+
+.field{
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 5px 0px;
+flex: 1;
+
+}
+
+
+
+.text-input{
+    flex-direction: column;
+    align-items: start;
+}
+
+textarea{
+    width: 400px;
+    height: 150px;
+    border-radius: .25rem;
+  padding: .25rem;
+  resize: none;
+  overflow: scroll;
+}
+
+
+
+.field>input[type="text"]{
+    width: 400px;
+    height: 40px;
+}
+
+.field>input[type="text"],textarea,.field>input[type="checkbox"]{
+border-radius: .25rem;
+    border: 1px solid rgba(0,0,0,0.21)
+}
+.field>input[type="checkbox"]:checked{
+    background-color: var(--completed);
+}
+.field>input[type="text"]:focus,textarea:focus{
+    outline: none;
+    border: 1px solid var(--info);
+}
+.form-name{
+  padding: 0px 10px;
+}
+
+.form-submit{
+  width: 80px;
+  height: 30px;
+  border:none;
+  border-radius: .25rem;
+ font-family: 'Nunito', sans-serif;
+  font-size: 17px;
+  padding: 5px;
+  cursor: pointer;
+}
+.submit-field{
+  justify-content: center;
+}
+/* form */
+
+
+@media only screen and (max-width:800px){
+  .container,.delete-container{
+    width: 80vw,
+  }
+}

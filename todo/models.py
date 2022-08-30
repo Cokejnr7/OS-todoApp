@@ -13,7 +13,6 @@ class Task(models.Model):
     description = models.TextField(blank=True, null=True)
     complete = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
-    image = models.ImageField(null=True, blank=True, default="default.jpg")
     id = models.UUIDField(default=uuid.uuid4,
                           editable=False,
                           unique=True,

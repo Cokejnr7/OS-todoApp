@@ -14,7 +14,7 @@
       {% if messages %}
       <ul class="messages">
       {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }} <i style="font-size:16px" class="fa cancel-message">&#xf00d;</i></li> 
+    <li{% if message.tags %} class="{{ message.tags }} message"{% endif %}>{{ message }} <i style="font-size:16px" class="fa cancel-message">&#xf00d;</i></li> 
     {% endfor %}
       </ul>
      

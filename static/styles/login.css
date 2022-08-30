@@ -197,6 +197,7 @@ form .btn input[type="submit"]{
 
 .register-field{
   margin-bottom: 50px;
+  position: relative;
 }
 
 .cancel-message{
@@ -232,4 +233,9 @@ li{
 }
 .fa{
   cursor: pointer;
+}
+
+.form-error{
+  position: absolute;
+  top: 70px;
 }
